@@ -37,7 +37,7 @@ $("document").ready(function () {
         addAmount +
         "</td>" +
         '<td class="subTotal">0</td>' +
-        '<td><button type="button" class="btn">Remove</button></td>' +
+        '<td><button type="button" class="btn rmv">Remove</button></td>' +
         "</tr>"
     );
 
@@ -46,16 +46,16 @@ $("document").ready(function () {
     $(".quant").val("");
   });
 
-  $("button").on("click", function () {
+  $(document).on("click", ".rmv", function () {
+    $(this).closest("tr").remove();
+  });
+
+  $(document).on("click", "button", function () {
     totalAmount = 0;
     $("tbody, tr").each(function () {
       let subttl = addTotals(this);
       totalAmount += subttl;
       resetTotals();
     });
-  });
-
-  $(".rmv").on("click", function () {
-    $(this).closest("tr").remove();
   });
 });
