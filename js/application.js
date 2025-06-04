@@ -16,8 +16,10 @@ $("document").ready(function () {
     totalAmount += subttl;
   });
 
-  $(".total").html(totalAmount);
-
+  function resetTotals() {
+    $(".total").html(totalAmount);
+  }
+  resetTotals();
   $("form > button").on("click", function () {
     var addItem = $(".item").val();
     var addPrice = $(".price").val();
@@ -44,12 +46,16 @@ $("document").ready(function () {
     $(".quant").val("");
   });
 
-  $("tr > button").on("click", function () {});
-
   $("button").on("click", function () {
+    totalAmount = 0;
     $("tbody, tr").each(function () {
       let subttl = addTotals(this);
       totalAmount += subttl;
+      resetTotals();
     });
+  });
+
+  $(".rmv").on("click", function () {
+    $(this).closest("tr").remove();
   });
 });
